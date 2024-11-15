@@ -52,7 +52,7 @@ public class UrlShortenerService {
         UrlShortener urlShortener = UrlShortener.builder()
                 .destinationUrl(destinationUrl)
                 .urlSlug(slug)
-                .expireAt(LocalDateTime.now().plusMinutes(EXPIRATION_DAYS))
+                .expireAt(LocalDateTime.now().plusDays(EXPIRATION_DAYS))
                 .build();
         return urlShortenerRepository.save(urlShortener);
     }
