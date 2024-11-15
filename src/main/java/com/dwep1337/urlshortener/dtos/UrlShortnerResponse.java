@@ -1,6 +1,6 @@
 package com.dwep1337.urlshortener.dtos;
 
 public record UrlShortnerResponse(
-        String content
+        String shortUrl
 ) {
 }
