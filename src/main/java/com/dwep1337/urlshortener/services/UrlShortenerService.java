@@ -30,7 +30,7 @@ public class UrlShortenerService {
 
     public ResponseEntity<UrlShortnerResponse> createUrlShortener(UrlShortnerRequest request) {
         String uniqueSlug = generateUniqueSlug();
-        UrlShortener savedUrl = saveUrl(request.destinationUrl(), uniqueSlug);
+        saveUrl(request.destinationUrl(), uniqueSlug);
 
         String shortUrl = String.format("%s/r/%s", baseUrl, uniqueSlug);
         return ResponseEntity.status(HttpStatus.CREATED).body(new UrlShortnerResponse(shortUrl));
