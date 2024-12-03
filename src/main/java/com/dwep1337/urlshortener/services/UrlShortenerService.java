@@ -48,13 +48,13 @@ public class UrlShortenerService {
         return UUID.randomUUID().toString().substring(0, length);
     }
 
-    private UrlShortener saveUrl(String destinationUrl, String slug) {
+    private void saveUrl(String destinationUrl, String slug) {
         UrlShortener urlShortener = UrlShortener.builder()
                 .destinationUrl(destinationUrl)
                 .urlSlug(slug)
                 .expireAt(LocalDateTime.now().plusDays(EXPIRATION_DAYS))
                 .build();
-        return urlShortenerRepository.save(urlShortener);
+        urlShortenerRepository.save(urlShortener);
     }
 
     public ResponseEntity<UrlShortnerResponse> redirect(String slug) {
