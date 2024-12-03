@@ -31,7 +31,6 @@ public class UrlShortenerService {
     public ResponseEntity<UrlShortnerResponse> createUrlShortener(UrlShortnerRequest request) {
         String uniqueSlug = generateUniqueSlug();
         saveUrl(request.destinationUrl(), uniqueSlug);
-
         String shortUrl = String.format("%s/r/%s", baseUrl, uniqueSlug);
         return ResponseEntity.status(HttpStatus.CREATED).body(new UrlShortnerResponse(shortUrl));
     }
@@ -39,13 +38,13 @@ public class UrlShortenerService {
     private String generateUniqueSlug() {
         String slug;
         do {
-            slug = generateSlug(SLUG_LENGTH);
+            slug = generateSlug();
         } while (urlShortenerRepository.findByUrlSlug(slug).isPresent());
         return slug;
     }
 
-    private String generateSlug(int length) {
-        return UUID.randomUUID().toString().substring(0, length);
+    private String generateSlug() {
+        return UUID.randomUUID().toString().substring(0, UrlShortenerService.SLUG_LENGTH);
     }
 
     private void saveUrl(String destinationUrl, String slug) {
