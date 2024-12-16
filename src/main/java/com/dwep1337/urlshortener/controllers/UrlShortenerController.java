@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UrlShortenerController {
-
     private final UrlShortenerService urlShortenerService;
 
     public UrlShortenerController(UrlShortenerService urlShortenerService) {
